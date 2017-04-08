@@ -1,4 +1,4 @@
-import Game from './model/game';
+import Game from './lib/game';
 import Action from '../../enum/action';
 import Config from '../../config';
 
@@ -10,8 +10,8 @@ window.onload = () => {
   const colorGridElm = document.getElementById('color-grid');
   const pattersElm = document.getElementById('patterns');
 
-  const CANVAS_WIDTH = Config.GAME_WIDTH * Config.GRID_SIZE;
-  const CANVAS_HEIGHT = Config.GAME_HEIGHT * Config.GRID_SIZE;
+  const CANVAS_WIDTH = Config.GAME_WIDTH * Config.CELL_SIZE;
+  const CANVAS_HEIGHT = Config.GAME_HEIGHT * Config.CELL_SIZE;
   canvasElm.width = CANVAS_WIDTH;
   canvasElm.height = CANVAS_HEIGHT;
 
@@ -24,7 +24,7 @@ window.onload = () => {
     }
   });
 
-  const game = new Game(Config.GRID_SIZE, primus, canvasElm, {
+  const game = new Game(Config.CELL_SIZE, primus, canvasElm, {
     players: playersElm,
     network: networkElm,
     generation: generationElm,

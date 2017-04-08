@@ -5,11 +5,11 @@ import { integerToHexColor } from '../util';
 const BORDER_COLOR = '#ccc';
 
 class Game {
-  constructor(gridSize, primus, canvas, elm) {
+  constructor(cellSize, primus, canvas, elm) {
     this.state = 'NOT_CONNECTED';
     this.primus = primus;
     this.canvas = canvas;
-    this.gridSize = gridSize;
+    this.cellSize = cellSize;
     this.elm = elm;
     this.canvas.addEventListener('click', this.click.bind(this));
     this.elm.patters.addEventListener('click', this.addPattern.bind(this));
@@ -131,8 +131,8 @@ class Game {
    */
   getCorrespondingCell(coordX, coordY) {
     // coordinate -1 for border adjustment
-    let x = Math.floor((coordX - 1) / this.gridSize);
-    let y = Math.floor((coordY - 1) / this.gridSize);
+    let x = Math.floor((coordX - 1) / this.cellSize);
+    let y = Math.floor((coordY - 1) / this.cellSize);
     // if clicking at edge(topmost/leftmost), it will become -1
     x = x < 0 ? 0 : x;
     y = y < 0 ? 0 : y;
@@ -153,14 +153,14 @@ class Game {
   drawBorders() {
     // draw the borders
     const context = this.canvas.getContext('2d');
-    for (let x = 0; x <= this.canvas.width; x += this.gridSize) {
+    for (let x = 0; x <= this.canvas.width; x += this.cellSize) {
       context.beginPath();
       context.moveTo(x, 0);
       context.lineTo(x, this.canvas.height);
       context.strokeStyle = BORDER_COLOR;
       context.stroke();
     }
-    for (let y = 0; y <= this.canvas.height; y += this.gridSize) {
+    for (let y = 0; y <= this.canvas.height; y += this.cellSize) {
       context.beginPath();
       context.moveTo(0, y);
       context.lineTo(this.canvas.width, y);
@@ -180,13 +180,13 @@ class Game {
       for (let x = 0; x < this.height; x++) {
         if (this.cells[y][x].state === State.ALIVE) {
           context.fillStyle = `#${integerToHexColor(this.cells[y][x].color)}`;
-          context.fillRect(posY, posX, this.gridSize - 2, this.gridSize - 2);
+          context.fillRect(posY, posX, this.cellSize - 2, this.cellSize - 2);
         }
-        posY += this.gridSize;
+        posY += this.cellSize;
       }
       // go to next row and draw
       posY = 1;
-      posX += this.gridSize;
+      posX += this.cellSize;
     }
   }
 

@@ -1,4 +1,5 @@
 const uuid = require('uuid').v4;
+const winston = require('winston');
 const Grid = require('./grid');
 const Player = require('./player');
 const Action = require('../../enum/action');
@@ -25,7 +26,20 @@ class Game {
    * clean up disconnected players
    */
   cleanUpDisconnectedPlayers() {
+    winston.info('Clear disconnected players');
     this.disconnectedPlayers = {};
+    if (this.getNumberOfPlayers() === 0) {
+      this.close();
+    }
+  }
+
+  /**
+   * Close the game
+   */
+  close() {
+    winston.info('A game closes');
+    clearInterval(this.autoUpdate);
+    clearInterval(this.autoCleanUp);
   }
 
   /**
@@ -96,6 +110,7 @@ class Game {
     const _identifier = identifier || uuid();
     const _color = color || Util.randomColor();
     this.players[_identifier] = new Player(_color, _identifier, spark);
+    winston.info(`A player ${_identifier} connects`);
     return this.players[_identifier];
   }
 
@@ -107,6 +122,7 @@ class Game {
     Object.keys(this.players).forEach((identifier) => {
       const player = this.players[identifier];
       if (player.getSocket().id === sparkId) {
+        winston.info(`A player ${identifier} disconnects`);
         this.disconnectedPlayers[identifier] = new Player(player.getColor(), player.getIdentifier());
         delete this.players[identifier];
       }

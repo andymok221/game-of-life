@@ -1,5 +1,6 @@
 const http = require('http');
 const path = require('path');
+const winston = require('winston');
 const Primus = require('primus');
 const Koa = require('koa');
 const Game = require('./model/game');
@@ -7,6 +8,21 @@ const serve = require('koa-static');
 const app = new Koa();
 const server = http.createServer(app.callback()).listen(process.env.PORT || 3000);
 const primus = new Primus(server, { transformer: 'websockets' });
+
+// configure logger
+winston.configure({
+  transports: [
+    new (winston.transports.File)({ filename: path.join(__dirname, '/log/node.log') }),
+    new (winston.transports.Console)({
+      timestamp() {
+        return new Date();
+      },
+      formatter(options) {
+        return `${options.timestamp()}[${options.level.toUpperCase()}]: ${options.message}`;
+      }
+    })
+  ]
+});
 
 // mount client side public assets
 app.use(serve(path.join(__dirname, '/../client/public')));
@@ -17,6 +33,7 @@ primus.on('connection', (spark) => {
   if (!game || game.hasNoPlayers()) {
     game = new Game();
     game.start();
+    winston.info('A game starts');
   }
   spark.on('data', (event) => {
     game.handleEvent(event, spark);
