@@ -112,7 +112,7 @@ class Grid {
    * When user click on a cell from client side
    * @param {Number} x - Column of cell
    * @param {Number} y - Row of Cell
-   * @param {String} color - Color of Cell
+   * @param {Number} color - Color of Cell
    * @return {Boolean}
    */
   updateCell(x, y, color) {

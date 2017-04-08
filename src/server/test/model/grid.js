@@ -52,8 +52,8 @@ describe('Test Model Grid', () => {
   it('test still pattern', () => {
     const grid = new Grid(5, 5);
     grid.updateCell(1, 0, 0); // x:1, y:0
-    grid.updateCell(1, 1, '#ddd'); // x:1, y:1
-    grid.updateCell(1, 2, '#ddd'); // x:1, y:2
+    grid.updateCell(1, 1, 0); // x:1, y:1
+    grid.updateCell(1, 2, 0); // x:1, y:2
     grid.generateNextGrid();
     expect(grid.cells[1][0].getState()).to.be.eql(State.ALIVE); // x:0, y:1
     expect(grid.cells[1][1].getState()).to.be.eql(State.ALIVE); // x:1, y:1
