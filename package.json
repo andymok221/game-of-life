@@ -7,10 +7,10 @@
     "node": "7.6.0"
   },
   "scripts": {
-    "start": "npm run build && node ./src/server/app.js",
+    "start": "npm run build && NODE_ENV=production node ./src/server/app.js",
     "dev": "./node_modules/.bin/webpack --config webpack.config.dev.js --progress --watch",
     "build": "BABEL_ENV=production  ./node_modules/.bin/webpack --config webpack.config.prod.js --progress",
-    "test": "./node_modules/.bin/eslint ./src/server --quiet && mocha src/server/test/**"
+    "test": "./node_modules/.bin/eslint ./src/server ./src/client --quiet && mocha src/server/test/**"
   },
   "author": "",
   "license": "ISC",

@@ -1,3 +1,4 @@
+const winston = require('winston');
 const Cell = require('./cell');
 const State = require('../../enum/state');
 const Util = require('../util');
@@ -74,6 +75,7 @@ class Grid {
         this.cells[normalizeY(y + 2)][normalizeX(x + 7)] = new Cell(State.ALIVE, color);
         break;
       default:
+        winston.error(`Invalid pattern: ${type}`);
         break;
     }
   }
@@ -133,7 +135,8 @@ class Grid {
         const result = this.countNeighbourAliveCells(x, y);
         const { aliveCount, avgColor } = result;
         newCells[y][x] = new Cell(State.DEAD);
-        switch (this.cells[y][x].getState()) {
+        const cellState = this.cells[y][x].getState();
+        switch (cellState) {
           case State.ALIVE:
             if ((aliveCount >= Config.UNDER_POPULATION_THRESHOLD) &&
               (aliveCount <= Config.OVERCROWDING_THRESHOLD)) {
@@ -146,6 +149,7 @@ class Grid {
             }
             break;
           default:
+            winston.error(`Invalid cell state: ${cellState}`);
             break;
         }
       }

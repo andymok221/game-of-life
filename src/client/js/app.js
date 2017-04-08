@@ -40,7 +40,7 @@ window.onload = () => {
       console.log('Reconnected to primus server');
       primus.write({
         action: Action.REJOIN_GAME,
-        data: {identifier: game.identifier}
+        data: { identifier: game.identifier }
       });
       game.setState('RECONNECTED');
       game.handleUIUpdate('network', 'RECONNECTED');
@@ -51,7 +51,7 @@ window.onload = () => {
     game.setState('RECONNECTING');
     game.handleUIUpdate('network', '<b>RECONNECTING</b>');
   });
-  primus.on('end', function () {
+  primus.on('end', () => {
     console.log('Connection closed');
     game.setState('DISCONNECTED');
     game.handleUIUpdate('network', '<b>DISCONNECTED</b>');

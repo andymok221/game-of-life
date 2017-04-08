@@ -10,19 +10,20 @@ const server = http.createServer(app.callback()).listen(process.env.PORT || 3000
 const primus = new Primus(server, { transformer: 'websockets' });
 
 // configure logger
-winston.configure({
-  transports: [
-    new (winston.transports.File)({ filename: path.join(__dirname, '/log/node.log') }),
-    new (winston.transports.Console)({
-      timestamp() {
-        return new Date();
-      },
-      formatter(options) {
-        return `${options.timestamp()}[${options.level.toUpperCase()}]: ${options.message}`;
-      }
-    })
-  ]
-});
+let transports = [
+  new (winston.transports.Console)({
+    timestamp() {
+      return new Date();
+    },
+    formatter(options) {
+      return `${options.timestamp()}[${options.level.toUpperCase()}]: ${options.message}`;
+    }
+  })
+];
+if (process.env.NODE_ENV === 'production') {
+  transports = [new (winston.transports.File)({ filename: path.join(__dirname, '/log/app.log') })];
+}
+winston.configure({ transports });
 
 // mount client side public assets
 app.use(serve(path.join(__dirname, '/../client/public')));

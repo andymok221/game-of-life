@@ -3,15 +3,15 @@ This is a implementation of a famous game, Conway’s Game of Life. Following to
 * Websocket for real time communication
 * Node.js for server side
 * HTML canvas for client side rendering
-* Webpack for client side asset compiling
+* Webpack for client side asset compiling and minifying
 
 ## Installation
 * Make sure you have Node.js `7.6.0`
-* Run `npm install`
+* Run `npm install` or `yarn`
 
 ## Start the game
 * Run `npm start` it will compile the asset first and then start the server
-* Go to `http://localhost:3000`
+* Go to `http://localhost:3000` or your hosted URL
 
 ## Development
 * Run `npm run dev` for client side asset compiling

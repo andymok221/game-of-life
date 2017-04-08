@@ -256,6 +256,7 @@ class Game {
         break;
       }
       default:
+        winston.error(`Invalid event: ${event.action}`);
         break;
     }
   }

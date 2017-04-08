@@ -140,8 +140,8 @@ class Game {
       action: Action.CLICK_CELL,
       data: {
         identifier: this.identifier,
-        x: x,
-        y: y
+        x,
+        y
       }
     });
     // send to server
