@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Game of Life</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+        html{
+            font-family:Montserrat,sans-serif
+        }
+        #color-grid {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+        }
+        img {
+            width: auto;
+            height: 96px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="game-of-life"></canvas>
+<div>Generation: <span id="generation"></span></div>
+<div>Players: <span id="players"></span></div>
+<div>Color: <span id="color-grid"></span></div>
+<div>State: <span id="network"></span></div>
+<div id="patterns">
+    <span><img id="glider" src="/img/glider.gif"></span>
+    <span><img id="beacon" src="/img/beacon.gif"></span>
+    <span><img id="tub" src="/img/tub.gif"></span>
+    <span><img id="diehard" src="/img/diehard.gif"></span>
+</div>
+<script src="/js/vendor/primus.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

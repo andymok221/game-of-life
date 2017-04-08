@@ -1,0 +1,34 @@
+{
+  "name": "AndyMok",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node ./src/server/app.js",
+    "dev": "webpack --config webpack.config.dev.js --progress --watch",
+    "build": "BABEL_ENV=production  webpack --config webpack.config.prod.js --progress",
+    "test": "./node_modules/.bin/eslint ./src/server --quiet && mocha src/server/test/**"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.2.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0",
+    "sinon": "^2.1.0",
+    "webpack": "^2.3.3"
+  },
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-static": "^3.0.0",
+    "primus": "^7.0.0",
+    "uuid": "^3.0.1",
+    "ws": "^2.2.3"
+  }
+}
