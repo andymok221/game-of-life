@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "npm run build && node ./src/server/app.js",
-    "dev": "webpack --config webpack.config.dev.js --progress --watch",
-    "build": "BABEL_ENV=production  webpack --config webpack.config.prod.js --progress",
+    "dev": "./node_modules/.bin/webpack --config webpack.config.dev.js --progress --watch",
+    "build": "BABEL_ENV=production  ./node_modules/.bin/webpack --config webpack.config.prod.js --progress",
     "test": "./node_modules/.bin/eslint ./src/server --quiet && mocha src/server/test/**"
   },
   "author": "",
