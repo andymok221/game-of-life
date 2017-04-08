@@ -12,7 +12,7 @@ class Game {
     this.cellSize = cellSize;
     this.elm = elm;
     this.canvas.addEventListener('click', this.click.bind(this));
-    this.elm.patters.addEventListener('click', this.addPattern.bind(this));
+    this.elm.patterns.addEventListener('click', this.addPattern.bind(this));
   }
 
   /**

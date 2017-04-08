@@ -8,7 +8,7 @@ window.onload = () => {
   const networkElm = document.getElementById('network');
   const generationElm = document.getElementById('generation');
   const colorGridElm = document.getElementById('color-grid');
-  const pattersElm = document.getElementById('patterns');
+  const patternsElm = document.getElementById('patterns');
 
   const CANVAS_WIDTH = Config.GAME_WIDTH * Config.CELL_SIZE;
   const CANVAS_HEIGHT = Config.GAME_HEIGHT * Config.CELL_SIZE;
@@ -29,7 +29,7 @@ window.onload = () => {
     network: networkElm,
     generation: generationElm,
     colorGrid: colorGridElm,
-    patters: pattersElm
+    patterns: patternsElm
   });
 
   primus.on('open', () => {

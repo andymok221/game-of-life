@@ -5,7 +5,7 @@ const Action = require('../../../enum/action');
 let sandbox;
 
 describe('Test Model Game', () => {
-  before(() => {
+  beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
   afterEach(() => {
