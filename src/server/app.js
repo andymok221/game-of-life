@@ -5,7 +5,7 @@ const Koa = require('koa');
 const Game = require('./model/game');
 const serve = require('koa-static');
 const app = new Koa();
-const server = http.createServer(app.callback()).listen(3000);
+const server = http.createServer(app.callback()).listen(process.env.PORT || 3000);
 const primus = new Primus(server, { transformer: 'websockets' });
 
 // mount client side public assets
